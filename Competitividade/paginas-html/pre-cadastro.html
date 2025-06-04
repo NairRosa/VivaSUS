@@ -23,26 +23,56 @@
                     <h2 class="tittle-form">Pré cadastro</h2>
 
                     <div class="content-login">
-                        <form method="post" action="#">
+                        <form id="preCadastroForm" onsubmit="handleSubmit(event)">
                             <p class="text-form">Nome</p>
-                            <input type="text" class="nome-box-input" name="nome" placeholder="Digite seu nome">
-                        </form>
-                        <br>
-                        <form method="post" action="#">
+                            <input type="text" class="nome-box-input" name="name" placeholder="Digite seu nome" required>
+                            <br>
                             <p class="text-form">Sobrenome</p>
-                            <input type="text" class="sobrenome-box-input" name="sobrenome" placeholder="Digite sobrenome">
-                        </form>
-                        <br>
-                        <form method="post" action="#">
+                            <input type="text" class="sobrenome-box-input" name="sobrenome" placeholder="Digite sobrenome" required>
+                            <br>
                             <p class="text-form">Email</p>
-                            <input type="email" class="email-box-input" name="email" placeholder="Digite seu email">
+                            <input type="email" class="email-box-input" name="email" placeholder="Digite seu email" required>
+                            <br>
+                            <p class="text-form">Idade</p>
+                            <input type="text" class="idade-box-input" name="age" placeholder="Digite sua idade" required>
+                            <br>
+                            <p class="text-form">CPF</p>
+                            <input type="text" class="cpf-box-input" name="cpf" placeholder="Digite seu CPF">
+                            <br>
+                            <p class="text-form">CRM (se for médico)</p>
+                            <input type="text" class="crm-box-input" name="crm" placeholder="Digite seu CRM">
+                            <br>
+                            <button type="submit" class="preCadastro-box-button">Enviar</button>
                         </form>
-                        <br>
-                        <button class="login-box-button"> Enviar </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script type="module">
+        import { createUser } from '/Competitividade/script/api.js';
+
+        window.handleSubmit = async (event) => {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const userData = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                age: formData.get('age'),
+                cpf: formData.get('cpf'),
+                crm: formData.get('crm')
+            };
+
+            try {
+                const user = await createUser(userData);
+                alert('Cadastro realizado com sucesso!');
+                window.location.href = '/Competitividade/paginas-html/login.html';
+            } catch (error) {
+                alert('Erro ao realizar cadastro. Por favor, tente novamente.');
+                console.error('Error:', error);
+            }
+        };
+    </script>
 </body>
 </html>
