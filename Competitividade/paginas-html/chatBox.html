@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Médico Online</title>
+    <link rel="stylesheet" href="/Competitividade/css/style.css">
+</head>
+<body>
+    <div class="body-chatBox">
+        <!-- Faixa verde VIVA SUS -->
+        <div class="viva-sus-header">
+            <img src="/Competitividade/imagens/logo-PretoEVerde.png" alt="VIVA SUS">
+        </div>
+
+        <!-- Chat box -->
+        <div class="chatbox-container">
+            <div class="chatbox-header">
+            <img src="/Competitividade/imagens/profile3.png" class="doctor-avatar" alt="Médico Avatar">
+    
+            <div class="doctor-info">
+                <strong class="doctor-name">Médico online</strong>
+                <div class="status-line"><span class="status-dot"></span> <span class="status-text">Online</span></div>
+            </div>
+
+            <button class="close-btn">×</button>
+        </div>
+
+        <div class="chatbox-body">
+            <div class="message">
+                <div class="user">Você sente alguma dor?</div>
+                <div class="bot">Nenhum desconforto informado.</div>
+                <div class="user">Deseja falar sobre os sintomas?</div>
+                <div class="bot">Estamos aqui para ajudar da melhor forma possível.</div>
+            </div>
+        </div>
+
+        <div class="chatbox-footer">
+            <button class="plus-btn">+</button>
+            <input type="text" id="userInput" placeholder="Escreva algo...">
+            <button class="send-btn" onclick="enviarMensagem()">↑</button>
+        </div>
+    </div>
+
+  <script src="/Competitividade/script/chatBox.js"></script>
+</body>
+</html>

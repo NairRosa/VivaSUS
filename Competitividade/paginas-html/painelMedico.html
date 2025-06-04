@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Competitividade/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css" integrity="sha384-z4tVnCr80ZcL0iufVdGQSUzNvJsKjEtqYZjiQrrYKlpGow+btDHDfQWkFjoaz/Zr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <title>Dashboard Médico</title>
+</head>
+<body class="body-painelMedico">
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <img class="logo-dash" src="/Competitividade/imagens/logo-PretoEVerde.png" alt="">
+                        <span class="title"><h2>VivaSUS</h2></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-house-heart-fill"></i></span>
+                        <span class="title">Menu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-people-fill"></i></span>                            
+                        <span class="title">Pacientes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-chat-dots-fill"></i></span>
+                        <span class="title">Message</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-question-circle-fill"></i></span>
+                        <span class="title">Help</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-gear-fill"></i></span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-lock-fill"></i></span>
+                        <span class="title">Password</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="bi bi-box-arrow-right"></i></span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    
+    
+        <div class="main-dashboard">
+            <div class="topbar">
+                <div class="toggle" onclick="toggleMenu();"><i class="bi bi-list"></i></div>
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="Search here">
+                        <i class="bi bi-search"></i>
+                    </label>
+                </div>
+                 <div class="user">
+                     <img src="/Competitividade/imagens/profile1.png" class="photo-user" alt="User photo">
+                </div>
+            </div>
+
+            <div class="cardBox">
+                <div class="card">
+                    <div>
+                        <div class="numbers">27</div>
+                        <div class="cardName">Fila de espera</div>
+                    </div>
+                    <div class="iconBox">
+                        <i class="bi bi-hourglass-bottom"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="numbers">13</div>
+                        <div class="cardName">Teleconsulta</div>
+                    </div>
+                    <div class="iconBox">
+                        <i class="bi bi-webcam"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="numbers">08</div>
+                        <div class="cardName">Médicos</div>
+                    </div>
+                    <div class="iconBox">
+                        <i class="bi bi-person-badge"></i>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="numbers">72</div>
+                        <div class="cardName">Pacientes atendidos</div>
+                    </div>
+                    <div class="iconBox">
+                        <i class="bi bi-clipboard-check"></i>
+                    </div>
+                </div> 
+            </div>
+        
+            <div class="graphBox">
+                <div class="box">
+                    <canvas id="myChart"></canvas>
+                </div>
+                <div class="box">
+                    <canvas id="earning"></canvas>
+                </div>
+            </div>
+
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Próximos pacientes</h2>
+                        <a href="#" class="btn">Ver todos</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Nome</td>
+                                <td>Especialidade</td>
+                                <td>Bairro</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sthefane Matos</td>
+                                <td>Clínico geral</td>
+                                <td>Barra</td>
+                                <td><span class="status inprogress">Fila de espera</span></td>                            </tr>
+                            <tr>
+                                <td>Pedro Sampaio</td>
+                                <td>Ortopedia</td>
+                                <td>Campo da Pólvora</td>
+                                <td><span class="status delivered">Teleconsulta</span></td>                            </tr>
+                            <tr>
+                                <td>Anderson Silva</td>
+                                <td>Dentista</td>
+                                <td>Pernambués</td>
+                                <td><span class="status return">Encaminhado - UBS</span></td>                            </tr>
+                            <tr>
+                                <td>Raabe Oliveira</td>
+                                <td>Pediatria</td>
+                                <td>Ribeira</td>
+                                <td><span class="status delivered">Encaminhado - UBS</span></td>                            </tr>
+                            <tr>
+                                <td>Arthur Vicente</td>
+                                <td>Cliníco Geral</td>
+                                <td>Pituba</td>
+                                <td><span class="status pending">Fila de espera</span></td>
+                            </tr>
+                            <tr>
+                                <td>Aila Vitória</td>
+                                <td>Ortopedista</td>
+                                <td>Cajazeiras</td>
+                                <td><span class="status inprogress">Fila de espera</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="recentCustomers">
+                    <div class="cardHeader">
+                        <h2>Últimos pacientes</h2>
+                    </div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td width="60px"><div class="imgBx"><img src="/Competitividade/imagens/profile2.png" alt="Photo-AnaLima"></div></td>
+                                <td><h4>Ana Lima <br><span>Brotas</span></h4></td>
+                            </tr>
+                            <tr>
+                                <td width="60px"><div class="imgBx"><img src="/Competitividade/imagens/profile3.png" alt="Photo-AnaLima"></div></td>
+                                <td><h4>Carina Bispo<br><span>São Caetano</span></h4></td>
+                            </tr>
+                            <tr>
+                                <td width="60px"><div class="imgBx"><img src="/Competitividade/imagens/profile4.png" alt="Photo-AnaLima"></div></td>
+                                <td><h4>Kézia Ferreira<br><span>Imbuí</span></h4></td>
+                            </tr>
+                            <tr>
+                                <td width="60px"><div class="imgBx"><img src="/Competitividade/imagens/profile5.png" alt="Photo-AnaLima"></div></td>
+                                <td><h4>Luana Barbosa <br><span>Campo Grande</span></h4></td>
+                            </tr>
+                            <tr>
+                                <td width="60px"><div class="imgBx"><img src="/Competitividade/imagens/profile6.png" alt="Photo-AnaLima"></div></td>
+                                <td><h4>Mary Silva <br><span>Barris</span></h4></td>
+                            </tr>
+                            <tr>
+                                <td width="60px"><div class="imgBx"><img src="/Competitividade/imagens/profile7.png" alt="Photo-AnaLima"></div></td>
+                                <td><h4>Ana Cecília <br><span>Pernambués</span></h4></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            let toggle = document.querySelector('.toggle');
+            let navigation = document.querySelector('.navigation');
+            let main = document.querySelector('.main');
+            toggle.classList.toggle('active');
+            navigation.classList.toggle('active');
+            main.classList.toggle('active');
+        }
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/Competitividade/chart/my_Chart.js"></script>
+</body>
+</html>
