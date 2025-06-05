@@ -23,17 +23,23 @@ export async function createUser(userData) {
     }
 }
 
-export async function getUsers() {
+export async function loginUser(credentials) {
     try {
-        const response = await fetch(`${API_URL}/usuarios`);
+        const response = await fetch(`${API_URL}/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(credentials),
+        });
         
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('Credenciais inválidas');
         }
         
         return await response.json();
     } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error('Error logging in:', error);
         throw error;
     }
 }

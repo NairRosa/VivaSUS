@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
 
 dotenv.config();
 const prisma = new PrismaClient();
@@ -18,29 +19,45 @@ app.get('/health', (req, res) => {
 // Create user endpoint
 app.post('/usuarios', async (req, res) => {
     try {
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const user = await prisma.user.create({
             data: {
                 email: req.body.email,
+                password: hashedPassword,
                 name: req.body.name,
                 age: req.body.age,
                 cpf: req.body.cpf || '',
                 crm: req.body.crm || ''
             }
         });
-        res.status(201).json(user);
+        const { password, ...userWithoutPassword } = user;
+        res.status(201).json(userWithoutPassword);
     } catch (error) {
         console.error('Error creating user:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
 
-// Get all users endpoint
-app.get('/usuarios', async (req, res) => {
+// Login endpoint
+app.post('/login', async (req, res) => {
     try {
-        const users = await prisma.user.findMany();
-        res.json(users);
+        const user = await prisma.user.findUnique({
+            where: { email: req.body.email }
+        });
+
+        if (!user) {
+            return res.status(401).json({ error: 'Usuário não encontrado' });
+        }
+
+        const validPassword = await bcrypt.compare(req.body.password, user.password);
+        if (!validPassword) {
+            return res.status(401).json({ error: 'Senha incorreta' });
+        }
+
+        const { password, ...userWithoutPassword } = user;
+        res.json(userWithoutPassword);
     } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error('Error during login:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });

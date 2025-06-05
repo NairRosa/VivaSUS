@@ -23,21 +23,44 @@
                     <h2 class="tittle-form">Login</h2> 
 
                     <div class="content-login">
-                        <form method="post" action="#">
+                        <form id="loginForm" onsubmit="handleLogin(event)">
                             <p class="text-form">Email</p>
-                            <input type="email" class="email-box-input" name="email" placeholder="Digite seu email">
-                        </form>
-                        <br>
-                        <form method="post" action="#">
+                            <input type="email" class="email-box-input" name="email" placeholder="Digite seu email" required>
+                            <br>
                             <p class="text-form">Senha</p>
-                            <input type="password" class="password-box-input" name="password" placeholder="Digite sua senha">
+                            <input type="password" class="password-box-input" name="password" placeholder="Digite sua senha" required>
+                            <br>
+                            <button type="submit" class="login-box-button">Entrar</button>
                         </form>
-                        <br>
-                        <button class="login-box-button"> Entrar </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script type="module">
+        import { loginUser } from '/Competitividade/script/api.js';
+
+        window.handleLogin = async (event) => {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const credentials = {
+                email: formData.get('email'),
+                password: formData.get('password')
+            };
+
+            try {
+                const user = await loginUser(credentials);
+                if (user.crm) {
+                    window.location.href = '/Competitividade/paginas-html/painelMedico.html';
+                } else {
+                    window.location.href = '/Competitividade/paginas-html/perfilPaciente.html';
+                }
+            } catch (error) {
+                alert('Email ou senha incorretos. Por favor, tente novamente.');
+                console.error('Error:', error);
+            }
+        };
+    </script>
 </body>
 </html>
