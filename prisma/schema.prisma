@@ -6,8 +6,9 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  // REMOVA a linha output!
 }
+
 
 datasource db {
   provider = "mongodb"
@@ -16,10 +17,16 @@ datasource db {
 
 model User {
   id      String   @id @default(auto()) @map("_id") @db.ObjectId
-  email   String   @unique
-  name    String
-  age     String
-  cpf     String
-  crm     String
+  name     String
+  sobrenome String
+  email    String @unique
+  cpf      String
+  idade    Int
+  peso     String
+  altura   String
+  pressaoArterial String
+  alergias String
+  queixas  String
+  senha    String
 }
 
